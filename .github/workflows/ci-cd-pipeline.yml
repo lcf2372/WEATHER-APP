@@ -13,17 +13,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      - name: Set Permissions for react-scripts
-        run: |
-          chmod +x node_modules/.bin/react-scripts
-      
       - name: Install Dependencies
         run: |
           cd client && npm install
 
+      - name: Set Permissions for react-scripts
+        run: |
+          chmod +x node_modules/.bin/react-scripts    
+
       - name: Run Tests (if applicable)
         run: |
-          cd client && npm test # Ensure tests pass before deploying (optional)
+          cd client && npm test 
 
       - name: Build Application
         run: |
