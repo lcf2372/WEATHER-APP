@@ -16,15 +16,15 @@ jobs:
       - name: Install Dependencies
         run: |
           cd client && npm install
-
-      - name: Set Permissions for react-scripts
+      
+      - name: Fix Permissions for react-scripts
         run: |
-          chmod +x node_modules/.bin/react-scripts    
-
-      - name: Run Tests (if applicable)
+          chmod +x ./client/node_modules/.bin/react-scripts
+      
+      - name: Run Tests
         run: |
-          cd client && npm test 
-
+          cd client && npm test
+      
       - name: Build Application
         run: |
           cd client && npm run build
