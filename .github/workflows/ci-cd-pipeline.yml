@@ -35,6 +35,12 @@ jobs:
           HOST: ${{ secrets.EC2_HOST }}
           USERNAME: ${{ secrets.EC2_USERNAME }}
         run: |
+          # Save and secure private key
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
+
+          # Test SSH connection
+          ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST "echo 'SSH Connection Successful'"
+
+          # Deploy files using SCP
           scp -o StrictHostKeyChecking=no -i private_key.pem -r client/build/* $USERNAME@$HOST:/var/www/html/
